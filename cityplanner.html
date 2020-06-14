@@ -1,0 +1,193 @@
+<style>
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: linen;
+}
+
+h1 {
+  color: maroon;
+  margin: 40px;
+}
+
+.container_row {
+  clear: both;
+}
+
+.panel {
+  float: left;
+  width: 100px;
+  height: 100px;
+  color: black;
+  font-size: 80px;
+  cursor: default;
+  text-align: center;
+  margin: 3px;
+  border: 2px solid rgb(0, 0, 100);
+  border-radius: 3px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.count {
+  float: left;
+  width: 100px;
+  height: 100px;
+  font-size: 50px;
+  color: black;
+  text-align: left;
+}
+
+.final {
+  font-size: 100px;
+}
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script language="javascript" type="text/javascript">
+var col1="rgb(0, 128, 0)";
+var col2="rgb(178, 34, 34)";
+
+function init(){
+    $('.panel').css("background-color", col1);
+    $('.panel').text("R");
+}
+function change(event){
+  var _id = '#' + event.target.id;
+
+  if ($(_id).hasClass("panel")) {
+    var cc = $(_id).css("background-color");
+    if(cc == col1){
+        $(_id).css("background-color", col2);
+        $(_id).text("C");
+    } else {
+        $(_id).css("background-color", col1);
+        $(_id).text("R");
+    }
+  }
+    var a1 = +($("#a1").text() == "R");
+    var b1 = +($("#b1").text() == "R");
+    var c1 = +($("#c1").text() == "R");
+    var d1 = +($("#d1").text() == "R");
+    var e1 = +($("#e1").text() == "R");
+    var a2 = +($("#a2").text() == "R");
+    var b2 = +($("#b2").text() == "R");
+    var c2 = +($("#c2").text() == "R");
+    var d2 = +($("#d2").text() == "R");
+    var e2 = +($("#e2").text() == "R");
+    var a3 = +($("#a3").text() == "R");
+    var b3 = +($("#b3").text() == "R");
+    var c3 = +($("#c3").text() == "R");
+    var d3 = +($("#d3").text() == "R");
+    var e3 = +($("#e3").text() == "R");
+    var a4 = +($("#a4").text() == "R");
+    var b4 = +($("#b4").text() == "R");
+    var c4 = +($("#c4").text() == "R");
+    var d4 = +($("#d4").text() == "R");
+    var e4 = +($("#e4").text() == "R");
+    var a5 = +($("#a5").text() == "R");
+    var b5 = +($("#b5").text() == "R");
+    var c5 = +($("#c5").text() == "R");
+    var d5 = +($("#d5").text() == "R");
+    var e5 = +($("#e5").text() == "R");
+
+  var score1 = a1 + b1 + c1 + d1 + e1;
+  var score2 = a2 + b2 + c2 + d2 + e2;
+  var score3 = a3 + b3 + c3 + d3 + e3;
+  var score4 = a4 + b4 + c4 + d4 + e4;
+  var score5 = a5 + b5 + c5 + d5 + e5;
+  var scorea = a1 + a2 + a3 + a4 + a5;
+  var scoreb = b1 + b2 + b3 + b4 + b5;
+  var scorec = c1 + c2 + c3 + c4 + c5;
+  var scored = d1 + d2 + d3 + d4 + d5;
+  var scoree = e1 + e2 + e3 + e4 + e5;
+
+  if (score1 >= 3) {score1 += 5};
+  if (score2 >= 3) {score2 += 5};
+  if (score3 >= 3) {score3 += 5};
+  if (score4 >= 3) {score4 += 5};
+  if (score5 >= 3) {score5 += 5};
+  if (scorea >= 3) {scorea += 5};
+  if (scoreb >= 3) {scoreb += 5};
+  if (scorec >= 3) {scorec += 5};
+  if (scored >= 3) {scored += 5};
+  if (scoree >= 3) {scoree += 5};
+
+  $("#score1").text(score1);
+  $("#score2").text(score2);
+  $("#score3").text(score3);
+  $("#score4").text(score4);
+  $("#score5").text(score5);
+  $("#scorea").text(scorea);
+  $("#scoreb").text(scoreb);
+  $("#scorec").text(scorec);
+  $("#scored").text(scored);
+  $("#scoree").text(scoree);
+
+  var scorefinal = score1+score2+score3+score4+score5+scorea+scoreb+scorec+scored+scoree;
+  $("#scorefinal").text(scorefinal);
+
+}
+</script>
+
+<html>
+<body onload="init()">
+<div id="root" onclick="change(event)">
+  <div class="container_row">
+    <div class="panel" id="a1"></div>
+    <div class="panel" id="b1"></div>
+    <div class="panel" id="c1"></div>
+    <div class="panel" id="d1"></div>
+    <div class="panel" id="e1"></div>
+    <div class="count" id="score1"></div>
+  </div>
+  <div class="container_row">
+    <div class="panel" id="a2"></div>
+    <div class="panel" id="b2"></div>
+    <div class="panel" id="c2"></div>
+    <div class="panel" id="d2"></div>
+    <div class="panel" id="e2"></div>
+    <div class="count" id="score2"></div>
+  </div>
+  <div class="container_row">
+    <div class="panel" id="a3"></div>
+    <div class="panel" id="b3"></div>
+    <div class="panel" id="c3"></div>
+    <div class="panel" id="d3"></div>
+    <div class="panel" id="e3"></div>
+    <div class="count" id="score3"></div>
+  </div>
+  <div class="container_row">
+    <div class="panel" id="a4"></div>
+    <div class="panel" id="b4"></div>
+    <div class="panel" id="c4"></div>
+    <div class="panel" id="d4"></div>
+    <div class="panel" id="e4"></div>
+    <div class="count" id="score4"></div>
+  </div>
+  <div class="container_row">
+    <div class="panel" id="a5"></div>
+    <div class="panel" id="b5"></div>
+    <div class="panel" id="c5"></div>
+    <div class="panel" id="d5"></div>
+    <div class="panel" id="e5"></div>
+    <div class="count" id="score5"></div>
+  </div>
+  <div class="container_row">
+    <div class="count" id="scorea"></div>
+    <div class="count" id="scoreb"></div>
+    <div class="count" id="scorec"></div>
+    <div class="count" id="scored"></div>
+    <div class="count" id="scoree"></div>
+    <div class="count final" id="scorefinal"></div>
+  </div>
+</div>
+
+
+</body>
+</html>
