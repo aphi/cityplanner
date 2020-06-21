@@ -10,7 +10,6 @@ body {
 
 h1 {
   color: maroon;
-  margin: 40px;
 }
 
 .container_row {
@@ -47,17 +46,13 @@ h1 {
   text-align: left; */
 }
 
-.final {
-  /* font-size: 100px; */
-}
-
-.stats{
-  font-size: 20px
+.stats {
+  font-size: 20px;
 }
 
 table
 {
-  font-size:30px;
+  font-size:26px;
   border:1px solid black;
   color:black;
   text-align:center;
@@ -65,11 +60,11 @@ table
 
 th:nth-child(1)
 {
-  background-color:rgb(178, 34, 34);
+  background-color:rgb(0, 128, 0);
 }
 th:nth-child(2)
 {
-  background-color:rgb(0, 128, 0);
+  background-color:rgb(178, 34, 34);
 }
 
 th:last-child, td:last-child
@@ -189,12 +184,15 @@ function update_scores(){
 
   var Rtotal = tot1+tot2+tot3+tot4+tot5;
   var Ctotal = 25 - Rtotal;
-  var statsstr = `#R = ${Rtotal}`;
-  if (Rtotal > 12){
-     statsstr = statsstr.concat(`<br />Invalid!`);
-  }
+  $("#Rcount").text(`#R = ${Rtotal}`);
 
-  $("#scorestats").html(statsstr);
+  if (Rtotal > 12){
+    $("#Rvalid").text('Invalid!');
+    $("#Rvalid").css("color", col2);
+  }else{
+    $("#Rvalid").text('Valid');
+    $("#Rvalid").css("color", col1);
+  }
 
 }
 </script>
@@ -207,11 +205,11 @@ function update_scores(){
   <h1>City Planner Game</h1>
   <div style="width: 70%; float:left">
   <h2>You are required to assign land in a development area into zones.</h2>
-  <h2>Each section in the 5x5 grid may be zoned as either <span style="color: rgb(0, 128, 0);">Residential ("R")</span> or <span style="color:rgb(178, 34, 34)">Commercial ("C")</span>, with a maximum of 12 "R" tiles.</h2>
-  <h2>Your objective is to maximise the total quality of the area, where each row and each column is awarded a number of points as specified in the table.</h2>
+  <h2>Each section in the 5x5 area may be zoned as either <span style="color: rgb(0, 128, 0);">Residential ("R")</span> or <span style="color:rgb(178, 34, 34)">Commercial ("C")</span>, with a maximum of 12 Residential ("R") tiles.</h2>
+  <h2>Your objective is to maximise the total score of the layout, which is the sum of the 5 row scores and 5 column scores. Row/column scores are specified in the table.</h2>
   </div>
   <div style="width: 30%; float:left">
-  <table style="margin: 20px">
+  <table style="margin-left: 15px">
     <thead>
       <tr>
         <th>#R</th>
@@ -301,8 +299,8 @@ function update_scores(){
       <div class="base count" id="scorec"></div>
       <div class="base count" id="scored"></div>
       <div class="base count" id="scoree"></div>
-      <div class="base count" id="scorefinal"></div>
-      <div class="base stats" id="scorestats"></div>
+      <div class="base count"><span style="font-size: 16px;">Total Score</span><br /><span id="scorefinal" style="font-size: 40px;"></span></div>
+      <div class="base stats"><span id="Rcount"></span><br /><span id="Rvalid"></span></div>
     </div>
   </div>
 </div>
