@@ -10,6 +10,16 @@ body {
 
 h1 {
   color: maroon;
+  font-size: 3em;
+}
+
+h2 label input button{
+  font-weight: lighter;
+  /* color: maroon; */
+}
+
+label input button {
+  font-size: 2em;
 }
 
 .container_row {
@@ -67,15 +77,6 @@ table
   text-align:center;
 }
 
-th:nth-child(1)
-{
-  background-color:rgb(0, 128, 0);
-}
-th:nth-child(2)
-{
-  background-color:rgb(178, 34, 34);
-}
-
 th:last-child, td:last-child
 {
   padding: 0px 20px;
@@ -94,31 +95,49 @@ th, td{
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script language="javascript" type="text/javascript">
-var col1="rgb(0, 128, 0)";
-var col2="rgb(178, 34, 34)";
+var col1="rgb(34, 139, 34)";
+var col2="rgb(205, 92, 92)";
 
 function init(){
-    $('.panel').css("background-color", col2);
-    $('.panel').text("C");
+    
+    for (const _id of ["#a1", "#b1", "#c1", "#d1", "#e1", "#a2", "#b2", "#c2", "#d2", "#e2", "#a3", "#b3", "#c3", "#d3", "#e3", "#a4", "#b4", "#c4", "#d4", "#e4", "#a5", "#b5", "#c5", "#d5", "#e5"]) {
+      var _val = sessionStorage.getItem(_id);
+      if ((_val == "C") || (_val == "R")) {
+        set_cell(_id, _val);
+      } else {
+        set_cell(_id, "C");
+      }
+    }
+
+}
+
+function set_cell(_id, _val){
+    sessionStorage.setItem(_id, _val);
+    
+    $(_id).text(_val);
+    if (_val == "R"){
+      $(_id).css("background-color", col1);
+    } else {
+      $(_id).css("background-color", col2);
+    }
 
     update_scores();
+}
+
+function toggle(_id){
+    if($(_id)[0].innerText == "R"){
+      set_cell(_id, "C");
+    } else {
+      set_cell(_id, "R");
+    }
 }
 
 function change(event){
   var _id = '#' + event.target.id;
 
   if ($(_id).hasClass("panel")) {
-    var cc = $(_id).css("background-color");
-    if(cc == col1){
-        $(_id).css("background-color", col2);
-        $(_id).text("C");
-    } else {
-        $(_id).css("background-color", col1);
-        $(_id).text("R");
-    }
+    toggle(_id);
   }
-
-  update_scores();
 }
 
 function score(val){
@@ -129,31 +148,31 @@ function score(val){
 }
 
 function update_scores(){
-    var a1 = +($("#a1").text() == "R");
-    var b1 = +($("#b1").text() == "R");
-    var c1 = +($("#c1").text() == "R");
-    var d1 = +($("#d1").text() == "R");
-    var e1 = +($("#e1").text() == "R");
-    var a2 = +($("#a2").text() == "R");
-    var b2 = +($("#b2").text() == "R");
-    var c2 = +($("#c2").text() == "R");
-    var d2 = +($("#d2").text() == "R");
-    var e2 = +($("#e2").text() == "R");
-    var a3 = +($("#a3").text() == "R");
-    var b3 = +($("#b3").text() == "R");
-    var c3 = +($("#c3").text() == "R");
-    var d3 = +($("#d3").text() == "R");
-    var e3 = +($("#e3").text() == "R");
-    var a4 = +($("#a4").text() == "R");
-    var b4 = +($("#b4").text() == "R");
-    var c4 = +($("#c4").text() == "R");
-    var d4 = +($("#d4").text() == "R");
-    var e4 = +($("#e4").text() == "R");
-    var a5 = +($("#a5").text() == "R");
-    var b5 = +($("#b5").text() == "R");
-    var c5 = +($("#c5").text() == "R");
-    var d5 = +($("#d5").text() == "R");
-    var e5 = +($("#e5").text() == "R");
+  var a1 = +($("#a1").text() == "R");
+  var b1 = +($("#b1").text() == "R");
+  var c1 = +($("#c1").text() == "R");
+  var d1 = +($("#d1").text() == "R");
+  var e1 = +($("#e1").text() == "R");
+  var a2 = +($("#a2").text() == "R");
+  var b2 = +($("#b2").text() == "R");
+  var c2 = +($("#c2").text() == "R");
+  var d2 = +($("#d2").text() == "R");
+  var e2 = +($("#e2").text() == "R");
+  var a3 = +($("#a3").text() == "R");
+  var b3 = +($("#b3").text() == "R");
+  var c3 = +($("#c3").text() == "R");
+  var d3 = +($("#d3").text() == "R");
+  var e3 = +($("#e3").text() == "R");
+  var a4 = +($("#a4").text() == "R");
+  var b4 = +($("#b4").text() == "R");
+  var c4 = +($("#c4").text() == "R");
+  var d4 = +($("#d4").text() == "R");
+  var e4 = +($("#e4").text() == "R");
+  var a5 = +($("#a5").text() == "R");
+  var b5 = +($("#b5").text() == "R");
+  var c5 = +($("#c5").text() == "R");
+  var d5 = +($("#d5").text() == "R");
+  var e5 = +($("#e5").text() == "R");
 
   var tot1 = a1 + b1 + c1 + d1 + e1;
   var tot2 = a2 + b2 + c2 + d2 + e2;
@@ -198,10 +217,15 @@ function update_scores(){
   if (Rtotal > 12){
     $("#Rvalid").text('Invalid!');
     $("#Rvalid").css("color", col2);
+    $("#validity_form").val('Invalid!');
   }else{
     $("#Rvalid").text('Valid');
     $("#Rvalid").css("color", col1);
+    $("#validity_form").val('Valid');
   }
+
+  $("#matrix_form").val($("#a1").text() + $("#b1").text() + $("#c1").text() + $("#d1").text() + $("#e1").text() + "\n" + $("#a2").text() + $("#b2").text() + $("#c2").text() + $("#d2").text() + $("#e2").text() + "\n" + $("#a3").text() + $("#b3").text() + $("#c3").text() + $("#d3").text() + $("#e3").text() + "\n" + $("#a4").text() + $("#b4").text() + $("#c4").text() + $("#d4").text() + $("#e4").text() + "\n" + $("#a5").text() + $("#b5").text() + $("#c5").text() + $("#d5").text() + $("#e5").text());
+  $("#scorefinal_form").val(scorefinal);
 
 }
 </script>
@@ -214,22 +238,21 @@ function update_scores(){
 <body onload="init();">
 <div style="width:5%; float:left; min-height:1px"></div>
 <div style="width:70%; float:left">
-<div>
   <h1>City Planner Game</h1>
   <div style="width: 70%; float:left">
   <h2>You are required to assign land in a development area into zones.</h2>
-  <h2>Each section in the 5x5 area may be zoned as either <span style="color: rgb(0, 128, 0);">Residential ("R")</span> or <span style="color:rgb(178, 34, 34)">Commercial ("C")</span>, with a maximum of 12 Residential ("R") tiles.</h2>
-    <h2>Part 1: Try to <i>maximise</i> the total score of the layout, which is the sum of the 5 row scores and 5 column scores. Each row/column score is determined by the number of "R"s and "C"s it contains, as given in the table.</h2>
-    <h2>Part 2: Now try to <i>minimise</i> the total score of the layout, still placing 12 Residential ("R") tiles.</h2>
-    <h4>Hint: Both your solutions are optimal only when the max is <span class="spoiler">30 points higher</span> than the min</h4>
+  <h2>Each section in the 5x5 area may be zoned as either <span style="color: rgb(34, 139, 34);">Residential ("R")</span> or <span style="color:rgb(205, 92, 92)">Commercial ("C")</span>, with a maximum of 12 Residential ("R") tiles.</h2>
+    <h2>Try to <i>maximise</i> the total score of the layout, which is the sum of the 5 row scores and 5 column scores. Each row/column score is determined by the number of "R"s and "C"s it contains, as given in the table.</h2>
+    <h2>( For an added challenge, also try to <i>minimise</i> the total score of the layout, still placing 12 Residential ("R") tiles. Both your solutions are optimal only when the max is <span class="spoiler">30 points higher</span> than the min )</h2>
     
   </div>
+
   <div style="width: 30%; float:left">
   <table style="margin-left: 15px">
     <thead>
       <tr>
-        <th>#R</th>
-        <th>#C</th>
+        <th style="color: rgb(34, 139, 34);">#R</th>
+        <th style="color: rgb(205, 92, 92);">#C</th>
         <th>Score</th>
       </tr>
     </thead>  
@@ -267,7 +290,7 @@ function update_scores(){
     </tbody>
   </table>
   </div>
-  </div>
+
   <div id="board" onclick="change(event)">
     <div class="container_row">
       <div class="base panel" id="a1"></div>
@@ -319,6 +342,19 @@ function update_scores(){
       <div class="base stats"><span id="Rcount"></span><br /><span id="Rvalid"></span></div>
     </div>
   </div>
+
+  <div style="width: 50%; float:top; padding-top:100px">
+  <h2>Submit Solution</h2>
+  <form action="https://formspree.io/f/mknedwkv" method="post">
+    <label>Name</label>
+    <input name="Name">
+    <input type="hidden" name="Validity" id="validity_form" value="">
+    <input type="hidden" name="Score" id="scorefinal_form" value="0">
+    <input type="hidden" name="Matrix" id="matrix_form" value="">
+    <button type="submit">Submit</button>
+  </form>
+  </div>
+  
 </div>
 <div style="width:25%; float:left"></div>
 </body>
